@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<form action="." method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="space-y-4">
+        {{form.as_p}}
+    </div>
+
+
+    {% if form.errors or form.non_feild_errors %}
+    <div class="mb-3 p-6 bg-danger ">
+        {% for feild in form %}
+        {{feild.errors}}
+        {% endfor %}
+        {{ form.non_feild_errors }}
+    </div>
+    {% endif %}
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+    </div>
+
+</form>
+</div>
+
+{% endblock %}
